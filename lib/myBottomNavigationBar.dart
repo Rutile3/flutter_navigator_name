@@ -19,9 +19,9 @@ class MyBottomNavigationBarState extends State<MyBottomNavigationBar> {
     CurrentNavigationName.page03: Icon(Icons.chat),
   };
   final Map<CurrentNavigationName, String> _label = {
-    CurrentNavigationName.page01: 'home',
-    CurrentNavigationName.page02: 'photo_album',
-    CurrentNavigationName.page03: 'chat',
+    CurrentNavigationName.page01: 'Home',
+    CurrentNavigationName.page02: 'Album',
+    CurrentNavigationName.page03: 'Chat',
   };
 
   @override
