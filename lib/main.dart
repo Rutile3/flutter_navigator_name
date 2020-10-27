@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import 'myBottomNavigationBar.dart';
+import 'currentNavigation.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -16,10 +19,12 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  MyHomePageState createState() => MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class MyHomePageState extends State<MyHomePage> {
+  var currentNavigationName = CurrentNavigationName.page01;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,6 +34,21 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Text('test'),
       ),
+      bottomNavigationBar: MyBottomNavigationBar(
+        onTap: _selectCurrentNavigation,
+      ),
     );
+  }
+
+  void _selectCurrentNavigation(CurrentNavigationName name) {
+    // 指定されたタブが現在のタブと同じ場合はタブの最初のページへ、
+    // 指定されたタブが現在のタブと異なる場合は他のタブのページへ遷移します。
+    if (name == this.currentNavigationName) {
+      currentNavigationState[name]
+          .currentState
+          .popUntil((route) => route.isFirst);
+    } else {
+      setState(() => this.currentNavigationName = name);
+    }
   }
 }
